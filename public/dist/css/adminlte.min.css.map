@@ -122,8 +122,6 @@
 		"../../build/scss/_miscellaneous.scss",
 		"../../build/scss/_print.scss",
 		"../../build/scss/skins/_all-skins.scss",
-		"../../build/scss/skins/skin-blue.scss",
-		"../../build/scss/skins/skin-blue-light.scss",
 		"../../build/scss/skins/skin-black.scss",
 		"../../build/scss/skins/skin-black-light.scss",
 		"../../build/scss/skins/skin-green.scss",

@@ -1,0 +1,20 @@
+kriteria penilaian =
+-daftar penilaian
+-tambah penilaian 
+
+area kerja =
+- daftar
+- tambah
+pegawai = 
+- unit utama
+- unit kerja
+- pegawai/penyedia
+
+pengguna =
+- unit utama
+- unit kerja
+- pegawai/penyedia
+
+penyedia = 
+- daftar penyedia
+- tambah penyedia

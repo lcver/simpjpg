@@ -168,7 +168,7 @@ h6,
 }
 /* General Links */
 a {
-  color: #3c8dbc;
+  color: #000000;
 }
 a:hover,
 a:active,
@@ -636,7 +636,6 @@ a:focus {
   .sidebar-mini.sidebar-collapse .sidebar-menu > li > a > span > .pull-right,
   .sidebar-mini.sidebar-collapse .sidebar-menu li.header {
     display: none !important;
-    -webkit-transform: translateZ(0);
   }
   .sidebar-mini.sidebar-collapse .main-header .logo {
     width: 50px;
