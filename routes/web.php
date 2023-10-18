@@ -31,81 +31,68 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login', [AuthController::class, 'index'])->name('login')->middleware('guest');
-Route::post('login',[AuthController::class, 'authentication'])->middleware('guest');
-Route::get('forgotpassword', function () {
-    return view('auth.forgotpassword');
-})->middleware('guest')->name('password.request');
+Route::controller(AuthController::class)->group(function() {
 
-Route::post('forgotpassword', function (Request $request) {
-    $request->validate(['email' => 'required|email']);
-    Alert::success('We have emailed your password reset link.');
-    $status = Password::sendResetLink(
-        $request->only('email')
-    );
+    Route::middleware('guest')->group(function() {
+        Route::get('login', 'index')->name('login');
+        Route::post('login','authentication');
 
-    return $status === Password::RESET_LINK_SENT
-                ? back()->with(['status' => __($status)])
-                : back()->withErrors(['email' => __($status)]);
-})->middleware('guest')->name('password.email');
+        Route::get('forgotpassword', 'forgotPassword')->name('password.request');
+        Route::post('forgotpassword', 'updatePassword')->name('password.email');
+        Route::get('resetpassword/{token}', 'resetToken')->name('password.reset');
+        Route::post('resetpassword', 'resetPassword')->name('password.update');
+    });
+    
+    Route::middleware('auth')->group(function() {
+        Route:: get('logout', 'logout');
+        
+        Route::get('change-password', 'changePassword');
+        Route::post('change-password', 'processChangePassword');
+    });
+});
 
-Route::get('resetpassword/{token}', function (string $token) {
-    return view('auth.resetpassword', ['token' => $token]);
-})->middleware('guest')->name('password.reset');
+Route::controller(DashboardController::class)->group(function() {
+    Route:: get('dashboard', 'index')->name('dashboard');
+})->middleware('auth');
 
-Route::post('resetpassword', function (Request $request) {
-    $request->validate([
-        'token' => 'required',
-        'email' => 'required|email',
-        'password' => 'required|min:8|confirmed',
-    ]);
+Route::controller(PenilaianController::class)->group(function() {
+    Route:: get('penilaian', 'index')->name('penilaian');
+})->middleware('auth');
 
-    $status = Password::reset(
-        $request->only('email', 'password', 'password_confirmation', 'token'),
-        function ($user,$password) {
-            $user->forceFill([
-                'password' => Hash::make($password)
-            ])->setRememberToken(Str::random(60));
- 
-            $user->save();
- 
-            event(new PasswordReset($user));
-        }
-    );
+Route::controller(KriteriaPenilaianController::class)->group(function() {
+    Route:: get('kriteria penilaian', 'index')->name('kriteriapenilaian');
+    Route:: get('kriteria-add', 'create');
+    Route:: post('kriteria', 'store');
+})->middleware('auth');
 
-    return $status === Password::PASSWORD_RESET
-                ? redirect()->route('login')->with('status', __($status))
-                : back()->withErrors(['email' => [__($status)]]);
-})->middleware('guest')->name('password.update');
+Route::controller(AreaKerjaController::class)->group(function() {
+    Route:: get('area-kerja', 'index')->name('areakerja');
+    Route:: get('area-add', 'create');
+    Route:: post('area-kerja', 'store');
+})->middleware('auth');
 
-Route:: get('logout', [AuthController::class, 'logout'])->middleware('auth');
+Route::controller(GedungKemenkesController::class)->group(function() {
+    Route:: get('gedung kemenkes','index')->name('gedungkemenkes');
+})->middleware('auth');
 
-Route::get('change-password', [AuthController::class, 'changePassword'])->middleware('auth');
-Route::post('change-password', [AuthController::class, 'processChangePassword'])->middleware('auth');
+Route::controller(UnitUtamaController::class)->group(function() {
+    Route::get('unit utama', 'index')->name('unitutama');
+})->middleware('auth');
 
-Route:: get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::controller(UnitKerjaController::class)->group(function() {
+    Route::get('unit kerja', 'index')->name('unitkerja');
+})->middleware('auth');
 
-Route:: get('penilaian', [PenilaianController::class, 'index'])->name('penilaian')->middleware('auth');
+Route::controller(PegawaiController::class)->group(function() {
+    Route::get('pegawai', 'index')->name('pegawai');
+    Route::get('pegawai-add', 'create');
+    Route:: post('pegawai', 'store');
+})->middleware('auth');
 
-Route:: get('kriteria penilaian', [KriteriaPenilaianController::class, 'index'])->name('kriteriapenilaian')->middleware('auth');
-Route:: get('kriteria-add', [KriteriaPenilaianController::class, 'create'])->middleware('auth');
-Route:: post('kriteria',[KriteriaPenilaianController::class, 'store'])->middleware('auth');
+Route::controller(PenggunaController::class)->group(function() {
+    Route::get('pengguna', 'index')->name('pengguna');
+})->middleware('auth');
 
-Route:: get('area-kerja', [AreaKerjaController::class, 'index'])->name('areakerja')->middleware('auth');
-Route:: get('area-add', [AreaKerjaController::class, 'create'])->middleware('auth');
-Route:: post('area-kerja', [AreaKerjaController::class, 'store'])->middleware('auth');
-
-Route:: get('gedung kemenkes',[GedungKemenkesController::class, 'index'])->name('gedungkemenkes')->middleware('auth');
-
-Route::get('unit utama',[UnitUtamaController::class, 'index'])->name('unitutama')->middleware('auth');
-
-Route::get('unit kerja', [UnitKerjaController::class, 'index'])->name('unitkerja')->middleware('auth');
-
-
-Route::get('pegawai', [PegawaiController::class, 'index'])->name('pegawai')->middleware('auth');
-Route::get('pegawai-add', [PegawaiController::class, 'create'])->middleware('auth');
-Route:: post('pegawai',[PegawaiController::class, 'store'])->middleware('auth');
-
-Route::get('pengguna', [PenggunaController::class, 'index'])->name('pengguna')->middleware('auth');
-
-Route:: get('penyedia', [PenyediaController::class, 'index'])->name('penyedia')->middleware('auth');
+Route::controller(PenyediaController::class)->group(function() {
+    Route:: get('penyedia', 'index')->name('penyedia');
+})->middleware('auth');
