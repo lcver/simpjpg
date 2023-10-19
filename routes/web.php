@@ -67,8 +67,10 @@ Route::controller(KriteriaPenilaianController::class)->group(function() {
 
 Route::controller(AreaKerjaController::class)->group(function() {
     Route:: get('area-kerja', 'index')->name('areakerja');
-    Route:: get('area-add', 'create');
-    Route:: post('area-kerja', 'store');
+    Route:: get('area-add', 'create')->name('areakerja.create');
+    Route:: get('area-edit/{id}', 'edit')->name('areakerja.edit');
+    Route:: post('area-kerja/store', 'store')->name('areakerja.store');
+    Route:: post('area-kerja/update/{id}', 'update')->name('areakerja.update');
 })->middleware('auth');
 
 Route::controller(GedungKemenkesController::class)->group(function() {
