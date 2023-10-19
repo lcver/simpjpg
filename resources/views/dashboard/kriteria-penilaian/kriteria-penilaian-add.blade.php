@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>E-Building | Daftar Kriteria Penilaian</title>
+    <title>E-Building | Tambah Data Kriteria Penilaian</title>
 
     <link rel="icon" type="image/png"
         href="https://trello.com/1/cards/64ed4989bbe6747599ce1a05/attachments/650921639318e47f2e317368/previews/650921639318e47f2e317376/download/icon-kemenkes.png">
@@ -38,14 +38,15 @@
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
+    @include('sweetalert::alert')
     <div class="wrapper">
         <header class="main-header">
             <!-- Logo -->
             <a href="dashboard" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><img src="dist/img/logo-ebuilding.png"></span>
+                <span class="logo-mini"><img src="{{ asset('dist/img/logo-ebuilding.png') }}"></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><img src="dist/img/logo-ebuilding.png"></span>
+                <span class="logo-lg"><img src="{{ asset('dist/img/logo-ebuilding.png') }}"></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top breadcrumb">
@@ -60,13 +61,13 @@
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="dist/img/login2.jpg" class="user-image" alt="User Image">
+                                <img src="{{ asset('dist/img/login2.jpg') }}" class="user-image" alt="User Image">
                                 <span class="hidden-xs">{{ Auth::user()->name }}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="dist/img/login2.jpg" class="img-circle" alt="User Image">
+                                    <img src="{{ asset('dist/img/login2.jpg') }}" class="img-circle" alt="User Image">
                                     <p>
                                         {{ Auth::user()->name }}
                                         <small>WELCOME {{ Auth::user()->name }}</small>
@@ -76,7 +77,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="change-password" class="btn btn-default btn-flat">Change Password</a>
+                                <a href="#" class="btn btn-default btn-flat">Change Password</a>
                             </div>
                             <div class="pull-right">
                                 <a href="logout" class="btn btn-default btn-flat">LogOut</a>
@@ -96,7 +97,7 @@
                 <div class="user-panel mt-5">
                     <br>
                     <div class="pull-left image">
-                        <img src="dist/img/login2.jpg" class="img-circle" alt="User Image">
+                        <img src="{{ asset('dist/img/login2.jpg') }}" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
                         <br>
@@ -138,25 +139,25 @@
                     </li>
                     <li class="header">PEGAWAI</li>
                     <li>
-                        <a href="{{ route('unitutama')}}">
+                        <a href="#">
                             <i class="fa fa-user"></i> 
                             <span>Daftar Unit Utama</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('unitkerja')}}">
+                        <a href="#">
                             <i class="fa fa-user"></i> 
                             <span>Daftar Unit Kerja</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('pegawai')}}">
+                        <a href="#">
                             <i class="fa fa-user"></i> 
                             <span>Daftar Pegawai</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('pengguna')}}">
+                        <a href="#">
                             <i class="fa fa-user"></i> 
                             <span>Daftar Pengguna</span>
                         </a>
@@ -180,52 +181,47 @@
                     <br>
                     <h4>Sistem Informasi Manajemen Penilaian Jasa Pengelola Gedung</h4>
                 </h1>
-                <p>
-                <div class="my-5 d-flex justify-content-between">
-                    <a href="kriteria-add"class="btn btn-primary">Tambah Data</a>
-                    <a href="#"class="btn btn-info pull-right">Show Deleted Data</a>
-
-                </div>
-                </p>
                 <ol class="breadcrumb">
-                    <li class="active">
-                        <h4>Daftar Kriteria Penilaian</h4>
+                    <li>
+                        <h4>Tambah Data Kriteria Penilaian</h4>
                     </li>
                 </ol>
                 <div class="box box-info">
                     <div class="box-header">
-                        <h3 class="box-title">Data Tabel Kriteria Penilaian</h3>
+                        <h3 class="box-title">Tambah Data Form Kriteria Penilaian</h3>
                     </div>
 
-                    <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Posisi Pegawai</th>
-                                    <th>Nama Kriteria</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($kriteriaList as $data)
-                                <tr>
-                                  <td>{{$loop->iteration}}</td>
-                                  <td>{{$data->posisi->posisi}}</td>
-                                  <td>{{$data->kriteria}}</td>
-                                  <td>
-                                    <a href="kriteria-edit/{{$data->posisi_id}}"class="btn btn-warning">EDIT</a>
-                                    <a href="" class="btn btn-danger">DELETE</a>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-            </section>
-            <!-- Main content -->
-            @yield('content')
-            <!-- /.content -->
+                    <form action="{{ route('kriteriapenilaian.store') }}" method="post">
+                        @csrf
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="Posisi">Posisi Pegawai</label>
+                                <select type="posisi" class="form-control" name="posisi_id" id="Posisi"
+                                    required>
+                                    <option value=""> Pilih Posisi Pegawai</option>
+                                    @foreach ($posisi as $item)
+                                        <option value="{{ $item->id_posisi }}">{{ $item->posisi }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="Kriteria">Kriteria Penilaian</label>
+                                <input type="kriteria" class="form-control" name="kriteria" id="Kriteria"
+                                    placeholder="Masukkan Kriteria Penilaian">
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <a href="kriteria penilaian" class="btn btn-default">Cancel</a>
+                            <button type="submit" class="btn btn-success pull-right">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Main content -->
+                @yield('content')
+                <!-- /.content -->
         </div>
-        
+
         <!-- /.content-wrapper -->
         <footer class="main-footer">
             <div class="pull-right hidden-xs">
