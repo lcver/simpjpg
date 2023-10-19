@@ -79,7 +79,21 @@ class AreaKerjaController extends Controller
         } catch (\Exception $ex) {
             Log::error($ex->getMessage());
             Alert::error('error', $ex->getMessage());
-            return redirect()->route('areakerja.edit');
+            return redirect()->route('areakerja.edit', ['id' => $id]);
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $gedung = Gedung::find($id)->delete();
+
+            Alert::success('success', 'Area kerja berhasil dihapus');
+            return redirect()->route('areakerja');
+        } catch (\Throwable $th) {
+            Log::error($ex->getMessage());
+            Alert::error('error', $ex->getMessage());
+            return redirect()->route('areakerja');
         }
     }
 }

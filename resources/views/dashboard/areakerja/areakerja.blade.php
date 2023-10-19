@@ -221,12 +221,12 @@
                             <tbody>
                                 @foreach($gedungList as $data)
                                 <tr>
-                                  <td>{{$loop->iteration}}</td>
+                                  <td>{{ ($gedungList->currentPage() - 1) * $gedungList->perPage() + $loop->iteration }}</td>
                                   <td>{{$data->gedung}}</td>
                                   <td>{{$data->area->area}}</td>
                                   <td>
                                     <a href="{{ route('areakerja.edit', ['id' => $data->id_gedung]) }}"class="btn btn-warning">EDIT</a>
-                                    <a href="" class="btn btn-danger">DELETE</a>
+                                    <a href="{{ route('areakerja.destroy', ['id' => $data->id_gedung]) }}" onclick="alert('Ingin menghapus <?= $data->gedung ?>?')" class="btn btn-danger">DELETE</a>
                                 @endforeach
                             </tbody>
                         </table>
