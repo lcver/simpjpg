@@ -182,7 +182,8 @@
                 </h1>
                 <p>
                 <div class="my-5 d-flex justify-content-between">
-                    <a href="#"class="btn btn-info">Show Deleted Data</a>
+                    <a href="{{ route('unitutama.create') }}"class="btn btn-primary">Tambah Data</a>
+                    <a href="#"class="btn btn-info pull-right">Show Deleted Data</a>
                 </div>
                 </p>
                 <ol class="breadcrumb">
@@ -195,29 +196,20 @@
                     <div class="box-header">
                         <h3 class="box-title">Data Tabel Unit Utama Kementerian Kesehatan</h3>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Nama Unit Utama Kementerian Kesehatan</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($utamaList as $data)
-                                <tr>
-                                  <td>{{$loop->iteration}}</td>
-                                  <td>{{$data->utama}}</td>
-                                  <td>
-                                    <a href="" class="btn btn-primary">DETAIL</a>
-                                    <a href=""class="btn btn-warning">EDIT</a>
-                                    <a href="" class="btn btn-danger">DELETE</a>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                    
+                    <form action="{{ route('unitutama.store') }}" method="post">
+                        @csrf
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="utama">Nama Unit</label>
+                                <input type="text" class="form-control" name="utama" id="utama" placeholder="Masukkan Kriteria Penilaian">
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <a href="{{ route('unitutama') }}" class="btn btn-default">Cancel</a>
+                            <button type="submit" class="btn btn-success pull-right">Simpan</button>
+                        </div>
+                    </form>
                 </div>
             </section>
 

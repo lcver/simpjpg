@@ -87,7 +87,12 @@ Route::controller(GedungKemenkesController::class)->middleware('auth')->group(fu
 });
 
 Route::controller(UnitUtamaController::class)->middleware('auth')->group(function() {
-    Route::get('unit utama', 'index')->name('unitutama');
+    Route::get('unit-utama', 'index')->name('unitutama');
+    Route::get('unit-utama/add', 'create')->name('unitutama.create');
+    Route::get('unit-utama/edit/{id}', 'edit')->name('unitutama.edit');
+    Route::post('unit-utama/store', 'store')->name('unitutama.store');
+    Route::post('unit-utama/update/{id}', 'update')->name('unitutama.update');
+    Route::get('unit-utama/delete/{id}', 'destroy')->name('unitutama.delete');
 });
 
 Route::controller(UnitKerjaController::class)->middleware('auth')->group(function() {
