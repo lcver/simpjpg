@@ -38,6 +38,7 @@
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
+    @include('sweetalert::alert')
     <div class="wrapper">
         <header class="main-header">
             <!-- Logo -->
@@ -193,31 +194,23 @@
 
                 <div class="box box-info">
                     <div class="box-header">
-                        <h3 class="box-title">Data Tabel Gedung Kementerian Kesehatan</h3>
+                        <h3 class="box-title">Tambah Data Form Gedung Kementrian Kesehatan</h3>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Nama gedung Kementerian Kesehatan</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($kemenkesList as $data)
-                                <tr>
-                                  <td>{{$loop->iteration}}</td>
-                                  <td>{{$data->kemenkes}}</td>
-                                  <td>
-                                    <a href="" class="btn btn-primary">DETAIL</a>
-                                    <a href=""class="btn btn-warning">EDIT</a>
-                                    <a href="" class="btn btn-danger">DELETE</a>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+
+                    <form action="{{ route('gedungkemenkes.store') }}" method="post">
+                        @csrf
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="kemenkes">Gedung Kementrian Kesehatan</label>
+                                <input type="text" class="form-control" name="kemenkes" id="kemenkes"
+                                    placeholder="Masukkan Area Kerja">
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <a href="{{ route('gedungkemenkes') }}" class="btn btn-default">Cancel</a>
+                            <button type="submit" class="btn btn-success pull-right">Simpan</button>
+                        </div>
+                    </form>
                 </div>
             </section>
 

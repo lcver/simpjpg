@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>E-Building | Daftar Kriteria Penilaian</title>
+    <title>E-Building | Daftar Gedung Kemenkes</title>
 
     <link rel="icon" type="image/png"
         href="https://trello.com/1/cards/64ed4989bbe6747599ce1a05/attachments/650921639318e47f2e317368/previews/650921639318e47f2e317376/download/icon-kemenkes.png">
@@ -116,7 +116,7 @@
                             <i class="fa fa-table"></i>
                             <span>Penilaian</span>
                         </a>
-                    <li class="active">
+                    <li>
                         <a href="{{ route('kriteriapenilaian') }}">
                             <i class="fa fa-users"></i>
                             <span>Daftar Kriteria Penilaian</span>
@@ -130,7 +130,7 @@
                             <span> Daftar Area Kerja</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="{{ route('gedungkemenkes')}}">
                             <i class="fa fa-building"></i>
                             <span>Daftar Gedung Kemenkes</span>
@@ -183,61 +183,42 @@
                 </h1>
                 <p>
                 <div class="my-5 d-flex justify-content-between">
-                    <a href="{{ route('kriteriapenilaian.create') }}"class="btn btn-primary">Tambah Data</a>
-                    <a href="#"class="btn btn-info pull-right">Show Deleted Data</a>
-
+                    <a href="#"class="btn btn-info ">Show Deleted Data</a>
                 </div>
                 </p>
                 <ol class="breadcrumb">
                     <li class="active">
-                        <h4>Daftar Kriteria Penilaian</h4>
+                        <h4>Daftar Gedung Kementerian Kesehatan</h4>
                     </li>
                 </ol>
+
                 <div class="box box-info">
                     <div class="box-header">
-                        <h3 class="box-title">Data Tabel Kriteria Penilaian</h3>
+                        <h3 class="box-title">Tambah Data Form Gedung Kementrian Kesehatan</h3>
                     </div>
 
-                    <div class="box-body">
-                        <div class="col-lg-2 col-lg-offset-10" style="padding: 0">
-                            <form method="get">
-                                <div class="input-group">
-                                    <input type="text" name="search" class="form-control" placeholder="Search for...">
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-default" type="button">Search</button>
-                                    </span>
-                                </div>
-                            </form>
+                    <form action="{{ route('gedungkemenkes.update', ['id' => $kemenkes->id]) }}" method="post">
+                        @csrf
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="kemenkes">Gedung Kementrian Kesehatan</label>
+                                <input type="text" class="form-control" name="kemenkes" id="kemenkes" placeholder="Masukkan Area Kerja" value="{{ $kemenkes->kemenkes }}">
+                            </div>
                         </div>
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Posisi Pegawai</th>
-                                    <th>Nama Kriteria</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($kriteriaList as $data)
-                                <tr>
-                                  <td>{{($kriteriaList->currentPage() - 1) * $kriteriaList->perPage() + $loop->iteration}}</td>
-                                  <td>{{$data->posisi->posisi}}</td>
-                                  <td>{{$data->kriteria}}</td>
-                                  <td>
-                                    <a href="{{ route('kriteriapenilaian.edit', ['id' => $data->id_kriteria]) }}" class="btn btn-warning">EDIT</a>
-                                    <a href="{{ route('kriteriapenilaian.destroy', ['id' => $data->id_kriteria]) }}" onclick="return confirm('Ingin menghapus <?= $data->kriteria ?>?')" class="btn btn-danger">DELETE</a>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        {{ $kriteriaList->links() }}
-                    </div>
+                        <div class="box-footer">
+                            <a href="{{ route('gedungkemenkes') }}" class="btn btn-default">Cancel</a>
+                            <button type="submit" class="btn btn-success pull-right">Simpan</button>
+                        </div>
+                    </form>
+                </div>
             </section>
+
+
             <!-- Main content -->
             @yield('content')
             <!-- /.content -->
         </div>
-        
+
         <!-- /.content-wrapper -->
         <footer class="main-footer">
             <div class="pull-right hidden-xs">

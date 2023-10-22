@@ -51,54 +51,59 @@ Route::controller(AuthController::class)->group(function() {
     });
 });
 
-Route::controller(DashboardController::class)->group(function() {
+Route::controller(DashboardController::class)->middleware('auth')->group(function() {
     Route::get('dashboard', 'index')->name('dashboard');
-})->middleware('auth');
+});
 
-Route::controller(PenilaianController::class)->group(function() {
+Route::controller(PenilaianController::class)->middleware('auth')->group(function() {
     Route::get('penilaian', 'index')->name('penilaian');
-})->middleware('auth');
+});
 
-Route::controller(KriteriaPenilaianController::class)->group(function() {
+Route::controller(KriteriaPenilaianController::class)->middleware('auth')->group(function() {
     Route::get('kriteria-penilaian', 'index')->name('kriteriapenilaian');
     Route::get('kriteria-penilaian-add', 'create')->name('kriteriapenilaian.create');
     Route::get('kriteria-penilaian-edit/{id}', 'edit')->name('kriteriapenilaian.edit');
     Route::post('kriteria-penilaian/store', 'store')->name('kriteriapenilaian.store');
     Route::post('kriteria-penilaian/update/{id}', 'update')->name('kriteriapenilaian.update');
     Route::get('kriteria-penilaian/delete/{id}', 'destroy')->name('kriteriapenilaian.destroy');
-})->middleware('auth');
+});
 
-Route::controller(AreaKerjaController::class)->group(function() {
+Route::controller(AreaKerjaController::class)->middleware('auth')->group(function() {
     Route::get('area-kerja', 'index')->name('areakerja');
     Route::get('area-add', 'create')->name('areakerja.create');
     Route::get('area-edit/{id}', 'edit')->name('areakerja.edit');
     Route::post('area-kerja/store', 'store')->name('areakerja.store');
     Route::post('area-kerja/update/{id}', 'update')->name('areakerja.update');
     Route::get('area-kerja/delete/{id}', 'destroy')->name('areakerja.destroy');
-})->middleware('auth');
+});
 
-Route::controller(GedungKemenkesController::class)->group(function() {
-    Route::get('gedung kemenkes','index')->name('gedungkemenkes');
-})->middleware('auth');
+Route::controller(GedungKemenkesController::class)->middleware('auth')->group(function() {
+    Route::get('kemenkes', 'index')->name('gedungkemenkes');
+    Route::get('kemenkes/add', 'create')->name('gedungkemenkes.create');
+    Route::get('kemenkes/edit/{id}', 'edit')->name('gedungkemenkes.edit');
+    Route::post('kemenkes/store', 'store')->name('gedungkemenkes.store');
+    Route::post('kemenkes/update/{id}', 'update')->name('gedungkemenkes.update');
+    Route::get('kemenkes/delete/{id}', 'destroy')->name('gedungkemenkes.delete');
+});
 
-Route::controller(UnitUtamaController::class)->group(function() {
+Route::controller(UnitUtamaController::class)->middleware('auth')->group(function() {
     Route::get('unit utama', 'index')->name('unitutama');
-})->middleware('auth');
+});
 
-Route::controller(UnitKerjaController::class)->group(function() {
+Route::controller(UnitKerjaController::class)->middleware('auth')->group(function() {
     Route::get('unit kerja', 'index')->name('unitkerja');
-})->middleware('auth');
+});
 
-Route::controller(PegawaiController::class)->group(function() {
+Route::controller(PegawaiController::class)->middleware('auth')->group(function() {
     Route::get('pegawai', 'index')->name('pegawai');
     Route::get('pegawai-add', 'create');
     Route::post('pegawai', 'store');
-})->middleware('auth');
+});
 
-Route::controller(PenggunaController::class)->group(function() {
+Route::controller(PenggunaController::class)->middleware('auth')->group(function() {
     Route::get('pengguna', 'index')->name('pengguna');
-})->middleware('auth');
+});
 
-Route::controller(PenyediaController::class)->group(function() {
+Route::controller(PenyediaController::class)->middleware('auth')->group(function() {
     Route::get('penyedia', 'index')->name('penyedia');
-})->middleware('auth');
+});
