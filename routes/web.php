@@ -119,4 +119,9 @@ Route::controller(PenggunaController::class)->middleware('auth')->group(function
 
 Route::controller(PenyediaController::class)->middleware('auth')->group(function() {
     Route::get('penyedia', 'index')->name('penyedia');
+    Route::get('penyedia/add', 'create')->name('penyedia.create');
+    Route::get('penyedia/edit/{id}', 'edit')->name('penyedia.edit');
+    Route::post('penyedia/store', 'store')->name('penyedia.store');
+    Route::post('penyedia/update/{id}', 'update')->name('penyedia.update');
+    Route::get('penyedia/delete/{id}', 'destroy')->name('penyedia.destroy');
 });

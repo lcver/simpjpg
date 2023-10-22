@@ -181,10 +181,6 @@
                     <h4>Sistem Informasi Manajemen Penilaian Jasa Pengelola Gedung</h4>
                 </h1>
                 <p>
-                <div class="my-5 d-flex justify-content-between">
-                    <a href="#"class="btn btn-primary">Tambah Data</a>
-                    <a href="#"class="btn btn-info pull-right">Show Deleted Data</a>
-                </div>
                 </p>
                 <ol class="breadcrumb">
                     <li class="active">
@@ -196,20 +192,20 @@
                     <div class="box-header">
                         <h3 class="box-title">Data Tabel Penyedia Kementerian Kesehatan</h3>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Nama Penyedia Kementerian Kesehatan</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
+                    
+                    <form action="{{ route('penyedia.update', ['id' => $penyedia->id]) }}" method="post">
+                        @csrf
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="penyedia">Nama penyedia</label>
+                                <input type="text" class="form-control" name="penyedia" id="penyedia" placeholder="Masukkan Nama Penyedia" value="{{ $penyedia->penyedia }}">
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <a href="{{ route('penyedia') }}" class="btn btn-default">Cancel</a>
+                            <button type="submit" class="btn btn-success pull-right">Simpan</button>
+                        </div>
+                    </form>
                 </div>
             </section>
 
