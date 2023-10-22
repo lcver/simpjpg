@@ -38,6 +38,7 @@
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
+    @include('sweetalert::alert')
     <div class="wrapper">
         <header class="main-header">
             <!-- Logo -->
@@ -190,47 +191,42 @@
                         <h3 class="box-title">Tambah Data Form Pegawai Kementerian Kesehatan</h3>
                     </div>
 
-                    <form action="pegawai" method="post">
+                    <form action="{{ route('pegawai.update', ['id' => $pegawai->id_pegawai]) }}" method="post">
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="pegawai">Nama Pegawai</label>
-                                <input type="pegawai" class="form-control" name="pegawai" id="pegawai"
-                                    placeholder="Masukkan Nama Pegawai" required>
+                                <input type="pegawai" class="form-control" name="pegawai" id="pegawai" placeholder="Masukkan Nama Pegawai" required value="{{ $pegawai->pegawai }}">
                             </div>
                             <div class="form-group">
                                 <label for="jabatan_id">Jabatan Pegawai</label>
-                                <select type="jabatan_id" class="form-control" name="jabatan_id" id="jabatan_id"
-                                    required>
+                                <select type="jabatan_id" class="form-control" name="jabatan_id" id="jabatan_id" required>
                                     <option value=""> Pilih Jabatan Pegawai</option>
                                     @foreach ($jabatan as $item)
-                                    <option value="{{ $item->id_jabatan }}">{{ $item->jabatan}}</option>
-                                @endforeach
-                             </select>
+                                        <option {{ $pegawai->jabatan_id == $item->id_jabatan ? 'selected' : '' }} value="{{ $item->id_jabatan }}">{{ $item->jabatan}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="gender">Jenis Kelamin Pegawai</label>
-                                <select type="gender" class="form-control" name="gender" id="gender"
-                                    required>
+                                <select type="gender" class="form-control" name="gender" id="gender" required>
                                     <option value=""> Pilih Jenis Kelamin Pegawai</option>
-                                    <option value="Laki-Laki">Laki-Laki</option>
-                                    <option value="Perempuan">Perempuan</option>
-                             </select>
+                                    <option {{ $pegawai->gender == "Laki-Laki" ? 'selected' : '' }} value="Laki-Laki">Laki-Laki</option>
+                                    <option {{ $pegawai->gender == "Perempuan" ? 'selected' : '' }} value="Perempuan">Perempuan</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="address">Alamat Rumah Pegawai</label>
-                                <input type="address" class="form-control" name="address" id="address"
-                                    placeholder="Masukkan Alamat Rumah" required>
+                                <input type="address" class="form-control" name="address" id="address" placeholder="Masukkan Alamat Rumah" required value="{{ $pegawai->address }}">
                             </div>
                             <div class="form-group">
                                 <label for="handphone">Nomor Handphone Pegawai</label>
-                                <input type="handphone" class="form-control" name="handphone" id="handphone"
-                                    placeholder="Masukkan Nomor Handphone"required>
+                                <input type="handphone" class="form-control" name="handphone" id="handphone" placeholder="Masukkan Nomor Handphone"required value="{{ $pegawai->handphone }}">
                             </div>
 
                         </div>
                         <div class="box-footer">
-                            <a href="pegawai" class="btn btn-default">Cancel</a>
+                            <a href="{{ route('pegawai') }}" class="btn btn-default">Cancel</a>
                             <button type="submit" class="btn btn-success pull-right">Simpan</button>
                         </div>
                     </form>

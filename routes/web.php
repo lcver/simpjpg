@@ -106,8 +106,11 @@ Route::controller(UnitKerjaController::class)->middleware('auth')->group(functio
 
 Route::controller(PegawaiController::class)->middleware('auth')->group(function() {
     Route::get('pegawai', 'index')->name('pegawai');
-    Route::get('pegawai-add', 'create');
-    Route::post('pegawai', 'store');
+    Route::get('pegawai/add', 'create')->name('pegawai.create');
+    Route::get('pegawai/edit/{id}', 'edit')->name('pegawai.edit');
+    Route::post('pegawai/store', 'store')->name('pegawai.store');
+    Route::post('pegawai/update/{id}', 'update')->name('pegawai.update');
+    Route::get('pegawai/delete/{id}', 'destroy')->name('pegawai.destroy');
 });
 
 Route::controller(PenggunaController::class)->middleware('auth')->group(function() {

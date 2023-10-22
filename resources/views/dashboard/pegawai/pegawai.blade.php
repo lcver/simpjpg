@@ -38,6 +38,7 @@
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
+    @include('sweetalert::alert')
     <div class="wrapper">
         <header class="main-header">
             <!-- Logo -->
@@ -182,7 +183,7 @@
                 </h1>
                 <p>
                 <div class="my-5 d-flex justify-content-between">
-                    <a href="pegawai-add"class="btn btn-primary">Tambah Data</a>
+                    <a href="{{ route('pegawai.create') }}"class="btn btn-primary">Tambah Data</a>
                     <a href="#"class="btn btn-info pull-right">Show Deleted Data</a>
                 </div>
                 </p>
@@ -198,6 +199,16 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
+                        <div class="col-lg-2 col-lg-offset-10" style="padding: 0">
+                            <form method="get">
+                                <div class="input-group">
+                                    <input type="text" name="search" class="form-control" placeholder="Search for...">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-default" type="button">Search</button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
@@ -216,16 +227,16 @@
                                   <td>{{$loop->iteration}}</td>
                                   <td>{{$data->pegawai}}</td>
                                   <td>{{$data->jabatan->jabatan}}</td>
-                                  <td>{{$data->jeniskelamin}}</td>
-                                  <td>{{$data->alamat}}</td>
+                                  <td>{{$data->gender}}</td>
+                                  <td>{{$data->address}}</td>
                                   <td>{{$data->handphone}}</td>
                                   <td>
-                                    <a href="" class="btn btn-primary">DETAIL</a>
-                                    <a href=""class="btn btn-warning">EDIT</a>
-                                    <a href="" class="btn btn-danger">DELETE</a>
+                                    <a href="{{ route('pegawai.edit', ['id' => $data->id_pegawai]) }}" class="btn btn-warning">EDIT</a>
+                                    <a href="{{ route('pegawai.destroy', ['id' => $data->id_pegawai]) }}" onclick="return confirm('Ingin menghapus <?= $data->id_pegawai ?>?')" class="btn btn-danger">DELETE</a>
                                 @endforeach
                             </tbody>
                         </table>
+                        {{ $pegawaiList->links() }}
                     </div>
                 </div>
             </section>
