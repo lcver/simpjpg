@@ -90,7 +90,7 @@ class AreaKerjaController extends Controller
 
             Alert::success('success', 'Area kerja berhasil dihapus');
             return redirect()->route('areakerja');
-        } catch (\Throwable $th) {
+        } catch (\Exception $ex) {
             Log::error($ex->getMessage());
             Alert::error('error', $ex->getMessage());
             return redirect()->route('areakerja');

@@ -85,7 +85,7 @@ class KriteriaPenilaianController extends Controller
 
             Alert::success('success', 'Kriteria penilaian berhasil dihapus');
             return redirect()->route('kriteriapenilaian');
-        } catch (\Throwable $th) {
+        } catch (\Exception $ex) {
             Log::error($ex->getMessage());
             Alert::error('error', $ex->getMessage());
             return redirect()->route('kriteriapenilaian');
