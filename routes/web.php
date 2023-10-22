@@ -96,7 +96,12 @@ Route::controller(UnitUtamaController::class)->middleware('auth')->group(functio
 });
 
 Route::controller(UnitKerjaController::class)->middleware('auth')->group(function() {
-    Route::get('unit kerja', 'index')->name('unitkerja');
+    Route::get('unit-kerja', 'index')->name('unitkerja');
+    Route::get('unit-kerja/add', 'create')->name('unitkerja.create');
+    Route::get('unit-kerja/edit/{id}', 'edit')->name('unitkerja.edit');
+    Route::post('unit-kerja/store', 'store')->name('unitkerja.store');
+    Route::post('unit-kerja/update/{id}', 'update')->name('unitkerja.update');
+    Route::get('unit-kerja/delete/{id}', 'destroy')->name('unitkerja.delete');
 });
 
 Route::controller(PegawaiController::class)->middleware('auth')->group(function() {
