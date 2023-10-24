@@ -30,7 +30,7 @@
     >
         <div class="d-flex justify-content-center align-items-center h-100">
           <div class="text-black">
-            <h6><img src="dist/img/logo-ebuilding.png" alt="logo" width="300px"></h6>
+            <h6><img src="{{ asset('dist/img/logo-ebuilding.png') }}" alt="logo" width="300px"></h6>
             <h1 class="mb-3" style="font-family: Comic Sans MS;" >SELAMAT DATANG DI E-BUILDING</h1>
             <h4 class="mb-3" style="font-family: verdana;">Penilaian Jasa Pengelola Gedung</h4>
             <a class="btn btn-outline-dark btn-lg" href="{{ route('login') }}" role="button"
