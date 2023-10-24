@@ -38,6 +38,7 @@
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
+    @include('sweetalert::alert')
     <div class="wrapper">
         <header class="main-header">
             <!-- Logo -->
@@ -182,7 +183,7 @@
                 </h1>
                 <p>
                     <div class="my-5 d-flex justify-content-between">
-                        <a href="#"class="btn btn-primary">Tambah Data</a>
+                        <a href="{{ route('pengguna.create') }}"class="btn btn-primary">Tambah Data</a>
                         <a href="#"class="btn btn-info pull-right">Show Deleted Data</a>
                     </div>
                     </p>
@@ -197,21 +198,42 @@
                     <div class="box-header">
                         <h3 class="box-title">Data Tabel Pengguna Kementerian Kesehatan</h3>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Nama Pengguna Kementerian Kesehatan</th>
-                                    <th>Email</th>
-                                    <th>Password</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
+                    
+                    <form action="{{ route('pengguna.update', ['id'=>$pengguna->id]) }}" method="post">
+                        @csrf
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="name">Nama User</label>
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Masukkan Nama" required value="{{ $pengguna->name }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Alamat Email</label>
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Masukkan Alamat Email" required value="{{ $pengguna->email }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="role">Role</label>
+                                <select class="form-control" name="role" id="role" required>
+                                    <option value="">Pilih role</option>
+                                    @foreach ($role as $item)
+                                        <option {{ $pengguna->role_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" name="password" id="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_password">Password</label>
+                                <input type="password" class="form-control" name="confirm_password" id="confirm_password">
+                            </div>
+
+                        </div>
+                        <div class="box-footer">
+                            <a href="{{ route('pengguna') }}" class="btn btn-default">Cancel</a>
+                            <button type="submit" class="btn btn-success pull-right">Simpan</button>
+                        </div>
+                    </form>
                 </div>
             </section>
 

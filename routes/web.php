@@ -115,6 +115,11 @@ Route::controller(PegawaiController::class)->middleware('auth')->group(function(
 
 Route::controller(PenggunaController::class)->middleware('auth')->group(function() {
     Route::get('pengguna', 'index')->name('pengguna');
+    Route::get('pengguna/add', 'create')->name('pengguna.create');
+    Route::get('pengguna/edit/{id}', 'edit')->name('pengguna.edit');
+    Route::post('pengguna/store', 'store')->name('pengguna.store');
+    Route::post('pengguna/update/{id}', 'update')->name('pengguna.update');
+    Route::get('pengguna/delete/{id}', 'destroy')->name('pengguna.destroy');
 });
 
 Route::controller(PenyediaController::class)->middleware('auth')->group(function() {
