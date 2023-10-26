@@ -14,4 +14,9 @@ class Posisi extends Model
     protected $fillable = [
         'posisi',
     ];
+
+    public function users()
+    {
+        return $this->hasOne(User::class);
+    }
 }

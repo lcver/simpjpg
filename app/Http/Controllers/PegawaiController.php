@@ -120,4 +120,11 @@ class PegawaiController extends Controller
             return redirect()->route('pegawai');
         }
     }
+
+    public function getPegawaiByPosisiId($id)
+    {
+        $datas = Pegawai::where("posisi_id", $id)->get();
+
+        return json_encode($datas);
+    }
 }

@@ -91,4 +91,12 @@ class KriteriaPenilaianController extends Controller
             return redirect()->route('kriteriapenilaian');
         }
     }
+
+    
+    public function getKriteriaByPosisiId($id)
+    {
+        $datas = Kriteria::where("posisi_id", $id)->get();
+
+        return json_encode($datas);
+    }
 }

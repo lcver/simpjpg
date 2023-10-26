@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\KriteriaPenilaianController;
+use App\Http\Controllers\PegawaiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::controller(PegawaiController::class)->group(function() {
+    Route::get('pegawai/posisi/{id}', 'getPegawaiByPosisiId');
+});
+
+Route::controller(KriteriaPenilaianController::class)->group(function() {
+    Route::get('kriteria/posisi/{id}', 'getKriteriaByPosisiId');
 });

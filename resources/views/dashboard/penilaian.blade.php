@@ -204,41 +204,23 @@
                                             <div class="tab-pane active" id="tab_1">
                                                 <div class="form-group">
                                                     <label>Posisi Bagian*</label>
-                                                    <select class="form-control select2">
-                                                        <option selected="selected">Alabama</option>
-                                                        <option>Alaska</option>
-                                                        <option>California</option>
-                                                        <option>Delaware</option>
-                                                        <option>Tennessee</option>
-                                                        <option>Texas</option>
-                                                        <option>Washington</option>
+                                                    <select class="form-control select2" name="posisi_id" id="posisi_id">
+                                                        <option value="_blank_">Pilih Posisi</option>
+                                                        @foreach ($posisi as $posisiItem)
+                                                            <option value="{{ $posisiItem->id_posisi }}">{{$posisiItem->posisi}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
-
-                                                <div class="form-group">
-                                                    <label>Pegawai*</label>
-                                                    <select class="form-control select2">
-                                                        <option selected="selected">Alabama</option>
-                                                        <option>Alaska</option>
-                                                        <option>California</option>
-                                                        <option>Delaware</option>
-                                                        <option>Tennessee</option>
-                                                        <option>Texas</option>
-                                                        <option>Washington</option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>Area Kerja*</label>
-                                                    <select class="form-control select2">
-                                                        <option selected="selected">Alabama</option>
-                                                        <option>Alaska</option>
-                                                        <option>California</option>
-                                                        <option>Delaware</option>
-                                                        <option>Tennessee</option>
-                                                        <option>Texas</option>
-                                                        <option>Washington</option>
-                                                    </select>
+                                                <div class="hidden" id="kartukuning">
+                                                    <div class="form-group">
+                                                        <label>Pegawai*</label>
+                                                        <select class="form-control select2" name="pegawai" id="pegawai"></select>
+                                                    </div>
+    
+                                                    <div class="form-group">
+                                                        <label>Area Kerja*</label>
+                                                        <select class="form-control select2" name="areakerja" id="areakerja"></select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -281,6 +263,7 @@
     <script>
         $.widget.bridge('uibutton', $.ui.button);
     </script>
+    <script src="{{ asset('js/main.js') }}"></script>
     <!-- Bootstrap 3.3.7 -->
     <script src="{{ asset('dist/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <!-- Morris.js charts -->

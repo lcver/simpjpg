@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class, 'role_id');
     }
+
+    public function posisi()
+    {
+        return $this->belongsTo(Posisi::class, 'posisi_id');
+    }
 }
