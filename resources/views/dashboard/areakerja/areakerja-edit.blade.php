@@ -191,7 +191,7 @@
                         <h3 class="box-title">Tambah Data Form Area Kerja</h3>
                     </div>
 
-                    <form action="{{ route('areakerja.update', ['id' => $gedung->id_gedung]) }}" method="post">
+                    <form action="{{ route('areakerja.update', ['id' => $gedung->id]) }}" method="post">
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
@@ -203,7 +203,7 @@
                                 <select type="area" class="form-control" name="area_id" id="Area" required>
                                     <option value=""> Pilih Area Kategori Pegawai</option>
                                     @foreach ($area as $item)
-                                        <option {{$item->id_area == $gedung->area_id ? 'selected' : ''}} value="{{ $item->id_area }}">{{ $item->area }}</option>
+                                        <option {{$item->id == $gedung->area_id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->area }}</option>
                                     @endforeach
                                 </select>
                             </div>

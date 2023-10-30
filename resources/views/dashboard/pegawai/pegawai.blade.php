@@ -231,8 +231,8 @@
                                   <td>{{$data->address}}</td>
                                   <td>{{$data->handphone}}</td>
                                   <td>
-                                    <a href="{{ route('pegawai.edit', ['id' => $data->id_pegawai]) }}" class="btn btn-warning">EDIT</a>
-                                    <a href="{{ route('pegawai.destroy', ['id' => $data->id_pegawai]) }}" onclick="return confirm('Ingin menghapus <?= $data->id_pegawai ?>?')" class="btn btn-danger">DELETE</a>
+                                    <a href="{{ route('pegawai.edit', ['id' => $data->id]) }}" class="btn btn-warning">EDIT</a>
+                                    <a href="{{ route('pegawai.destroy', ['id' => $data->id]) }}" onclick="return confirm('Ingin menghapus <?= $data->id ?>?')" class="btn btn-danger">DELETE</a>
                                 @endforeach
                             </tbody>
                         </table>

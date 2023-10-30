@@ -225,8 +225,8 @@
                                   <td>{{$data->posisi->posisi}}</td>
                                   <td>{{$data->kriteria}}</td>
                                   <td>
-                                    <a href="{{ route('kriteriapenilaian.edit', ['id' => $data->id_kriteria]) }}" class="btn btn-warning">EDIT</a>
-                                    <a href="{{ route('kriteriapenilaian.destroy', ['id' => $data->id_kriteria]) }}" onclick="return confirm('Ingin menghapus <?= $data->kriteria ?>?')" class="btn btn-danger">DELETE</a>
+                                    <a href="{{ route('kriteriapenilaian.edit', ['id' => $data->id]) }}" class="btn btn-warning">EDIT</a>
+                                    <a href="{{ route('kriteriapenilaian.destroy', ['id' => $data->id]) }}" onclick="return confirm('Ingin menghapus <?= $data->kriteria ?>?')" class="btn btn-danger">DELETE</a>
                                 @endforeach
                             </tbody>
                         </table>

@@ -9,7 +9,7 @@ class Pegawai extends Model
 {
     use HasFactory;
     protected $table = 'pegawai';
-    protected $primaryKey = 'id_pegawai';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'jabatan_id',
@@ -20,6 +20,6 @@ class Pegawai extends Model
         'handphone',
     ];
     public function jabatan() {
-        return $this->belongsTo(Jabatan::class, 'jabatan_id', 'id_jabatan');
+        return $this->belongsTo(Jabatan::class, 'jabatan_id', 'id');
     }
 }

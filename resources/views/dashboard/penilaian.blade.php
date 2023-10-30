@@ -207,7 +207,7 @@
                                                     <select class="form-control select2" name="posisi_id" id="posisi_id">
                                                         <option value="_blank_">Pilih Posisi</option>
                                                         @foreach ($posisi as $posisiItem)
-                                                            <option value="{{ $posisiItem->id_posisi }}">{{$posisiItem->posisi}}</option>
+                                                            <option value="{{ $posisiItem->id }}">{{$posisiItem->posisi}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>

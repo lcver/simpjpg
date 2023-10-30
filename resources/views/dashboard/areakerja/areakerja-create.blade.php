@@ -204,7 +204,7 @@
                                 <select type="area" class="form-control" name="area_id" id="Area" required>
                                     <option value=""> Pilih Area Kategori Pegawai</option>
                                     @foreach ($area as $item)
-                                        <option value="{{ $item->id_area }}">{{ $item->area }}</option>
+                                        <option value="{{ $item->id }}">{{ $item->area }}</option>
                                     @endforeach
                                 </select>
                             </div>

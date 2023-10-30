@@ -288,8 +288,8 @@ Route::get('kriteria-edit/{posisi_id}',[KriteriaPenilaianController::class, 'edi
 
 3. Kriteria Penilaian Controller
 
-    public function edit(Request $request, $id_kriteria){
-        $kriteria = Kriteria::findOrFail($id_kriteria);
+    public function edit(Request $request, $id){
+        $kriteria = Kriteria::findOrFail($id);
         $posisi = Posisi::get();
         return view('crud.kriteria-edit',[ 'kriteria'=>$kriteria,'posisi'=>$posisi]);
     }

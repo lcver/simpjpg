@@ -191,7 +191,7 @@
                         <h3 class="box-title">Tambah Data Form Kriteria Penilaian</h3>
                     </div>
 
-                    <form action="{{ route('kriteriapenilaian.update', ['id' => $kriteria->id_kriteria]) }}" method="post">
+                    <form action="{{ route('kriteriapenilaian.update', ['id' => $kriteria->id]) }}" method="post">
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
@@ -200,7 +200,7 @@
                                     required>
                                     <option value=""> Pilih Posisi Pegawai</option>
                                     @foreach ($posisi as $item)
-                                        <option {{ $kriteria->posisi_id == $item->id_posisi ? 'selected' : '' }} value="{{ $item->id_posisi }}">{{ $item->posisi }}</option>
+                                        <option {{ $kriteria->posisi_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->posisi }}</option>
                                     @endforeach
                                 </select>
                             </div>

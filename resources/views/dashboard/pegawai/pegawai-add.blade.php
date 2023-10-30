@@ -203,7 +203,7 @@
                                 <select type="jabatan_id" class="form-control" name="jabatan_id" id="jabatan_id" required>
                                     <option value=""> Pilih Jabatan Pegawai</option>
                                     @foreach ($jabatan as $item)
-                                        <option value="{{ $item->id_jabatan }}">{{ $item->jabatan}}</option>
+                                        <option value="{{ $item->id }}">{{ $item->jabatan}}</option>
                                     @endforeach
                                 </select>
                             </div>

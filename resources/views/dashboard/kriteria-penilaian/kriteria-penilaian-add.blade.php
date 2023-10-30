@@ -200,7 +200,7 @@
                                     required>
                                     <option value=""> Pilih Posisi Pegawai</option>
                                     @foreach ($posisi as $item)
-                                        <option value="{{ $item->id_posisi }}">{{ $item->posisi }}</option>
+                                        <option value="{{ $item->id }}">{{ $item->posisi }}</option>
                                     @endforeach
                                 </select>
                             </div>

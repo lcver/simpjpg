@@ -24,13 +24,13 @@ class AreaKerjaController extends Controller
 
     public function create()
     {
-        $area = Area::select('id_area', 'area')->get();
+        $area = Area::select('id', 'area')->get();
         return view('dashboard.areakerja.areakerja-create', ['area'=>$area]);  
     }
 
     public function edit($id)
     {
-        $area = Area::select('id_area', 'area')->get();
+        $area = Area::select('id', 'area')->get();
         $gedung = Gedung::find($id);
         return view('dashboard.areakerja.areakerja-edit', ['gedung' => $gedung, 'area' => $area]);
     }

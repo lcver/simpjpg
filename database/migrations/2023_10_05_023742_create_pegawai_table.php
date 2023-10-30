@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pegawai', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 100)->required();
+            $table->string('pegawai', 100)->required();
             $table->string('alamat', 100)->required();
             $table->string('handphone', 10)->required();
             $table->timestamps();

@@ -9,7 +9,7 @@ class Kriteria extends Model
 {
     use HasFactory;
     protected $table = 'kriteria';
-    protected $primaryKey = 'id_kriteria';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'posisi_id',
@@ -17,6 +17,6 @@ class Kriteria extends Model
     ];
 
     public function posisi() {
-        return $this->belongsTo(Posisi::class, 'posisi_id', 'id_posisi');
+        return $this->belongsTo(Posisi::class, 'posisi_id', 'id');
     }
 }

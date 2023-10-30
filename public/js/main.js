@@ -10,7 +10,7 @@ $(async () => {
                 data.forEach((e) => {
                     pegawai.append(
                         `<option>pilih pegawai</option>` +
-                            `<option value="${e.id_pegawai}">${e.pegawai}</option>`
+                            `<option value="${e.id}">${e.pegawai}</option>`
                     );
                 });
 
@@ -25,7 +25,7 @@ $(async () => {
                         data.forEach((e) => {
                             areakerja.append(
                                 `<option>pilih kriteria</option>` +
-                                    `<option value="${e.id_kriteria}">${e.kriteria}</option>`
+                                    `<option value="${e.id}">${e.kriteria}</option>`
                             );
                         });
                     }

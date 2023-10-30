@@ -225,8 +225,8 @@
                                   <td>{{$data->gedung}}</td>
                                   <td>{{$data->area->area}}</td>
                                   <td>
-                                    <a href="{{ route('areakerja.edit', ['id' => $data->id_gedung]) }}"class="btn btn-warning">EDIT</a>
-                                    <a href="{{ route('areakerja.destroy', ['id' => $data->id_gedung]) }}" onclick="return confirm('Ingin menghapus <?= $data->gedung ?>?')" class="btn btn-danger">DELETE</a>
+                                    <a href="{{ route('areakerja.edit', ['id' => $data->id]) }}"class="btn btn-warning">EDIT</a>
+                                    <a href="{{ route('areakerja.destroy', ['id' => $data->id]) }}" onclick="return confirm('Ingin menghapus <?= $data->gedung ?>?')" class="btn btn-danger">DELETE</a>
                                 @endforeach
                             </tbody>
                         </table>

@@ -31,14 +31,14 @@ class PegawaiController extends Controller
     }
 
     public function create(){
-        $jabatan = Jabatan::select('id_jabatan', 'jabatan')->get();
+        $jabatan = Jabatan::select('id', 'jabatan')->get();
         return view('dashboard.pegawai.pegawai-add', ['jabatan' => $jabatan ]);
     }
 
     public function edit($id)
     {
         $pegawai = Pegawai::find($id);
-        $jabatan = Jabatan::select('id_jabatan', 'jabatan')->get();
+        $jabatan = Jabatan::select('id', 'jabatan')->get();
 
         return view('dashboard.pegawai.pegawai-edit', ['pegawai' => $pegawai, 'jabatan' => $jabatan]);
     }

@@ -191,7 +191,7 @@
                         <h3 class="box-title">Tambah Data Form Pegawai Kementerian Kesehatan</h3>
                     </div>
 
-                    <form action="{{ route('pegawai.update', ['id' => $pegawai->id_pegawai]) }}" method="post">
+                    <form action="{{ route('pegawai.update', ['id' => $pegawai->id]) }}" method="post">
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
@@ -203,7 +203,7 @@
                                 <select type="jabatan_id" class="form-control" name="jabatan_id" id="jabatan_id" required>
                                     <option value=""> Pilih Jabatan Pegawai</option>
                                     @foreach ($jabatan as $item)
-                                        <option {{ $pegawai->jabatan_id == $item->id_jabatan ? 'selected' : '' }} value="{{ $item->id_jabatan }}">{{ $item->jabatan}}</option>
+                                        <option {{ $pegawai->jabatan_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->jabatan}}</option>
                                     @endforeach
                                 </select>
                             </div>

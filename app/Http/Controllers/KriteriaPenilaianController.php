@@ -21,13 +21,13 @@ class KriteriaPenilaianController extends Controller
         return view('dashboard.kriteria-penilaian.kriteria-penilaian', ['kriteriaList' => $kriteria]);
     }
     public function create(){
-        $posisi = Posisi::select('id_posisi', 'posisi')->get();
+        $posisi = Posisi::select('id', 'posisi')->get();
         return view('dashboard.kriteria-penilaian.kriteria-penilaian-add', ['posisi'=>$posisi]);  
     }
 
     public function edit($id)
     {
-        $posisi = Posisi::select('id_posisi', 'posisi')->get();
+        $posisi = Posisi::select('id', 'posisi')->get();
         $kriteria = Kriteria::find($id);
         return view('dashboard.kriteria-penilaian.kriteria-penilaian-edit', ['posisi' => $posisi, 'kriteria' => $kriteria]);
     }

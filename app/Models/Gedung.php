@@ -10,13 +10,13 @@ class Gedung extends Model
     use HasFactory;
 
     protected $table = 'gedung';
-    protected $primaryKey = 'id_gedung';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'area_id',
         'gedung',
     ];
     public function area() {
-        return $this->belongsTo(Area::class, 'area_id', 'id_area');
+        return $this->belongsTo(Area::class, 'area_id', 'id');
     }
 }
