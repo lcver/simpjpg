@@ -6,6 +6,7 @@ use Alert;
 use App\Helpers\Validation;
 use App\Models\Jabatan;
 use App\Models\Pegawai;
+use App\Models\Posisi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -32,7 +33,8 @@ class PegawaiController extends Controller
 
     public function create(){
         $jabatan = Jabatan::select('id', 'jabatan')->get();
-        return view('dashboard.pegawai.pegawai-add', ['jabatan' => $jabatan ]);
+        $posisi = Posisi::select('id', 'posisi')->get();
+        return view('dashboard.pegawai.pegawai-add', ['jabatan' => $jabatan, 'posisi' => $posisi]);
     }
 
     public function edit($id)
@@ -50,12 +52,14 @@ class PegawaiController extends Controller
             $filter = Validation::set($request, [
                 'pegawai' => 'required|string',
                 'jabatan_id' => 'required',
+                'posisi_id' => 'required',
                 'gender' => 'required',
                 'address' => 'required',
                 'handphone' => 'required',
             ], [
                 'pegawai.required' => 'Kolom nama pegawai tidak boleh kosong!',
                 'jabatan_id.required' => 'Jabatan tidak boleh kosong!',
+                'posisi_id.required' => 'Posisi tidak boleh kosong!',
                 'gender.required' => 'Kolom gender tidak boleh kosong!',
                 'address.required' => 'Kolom address tidak boleh kosong!',
                 'handphone.required' => 'Kolom handphone tidak boleh kosong!',

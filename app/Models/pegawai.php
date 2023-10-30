@@ -15,6 +15,7 @@ class Pegawai extends Model
         'jabatan_id',
         'pegawai',
         'jabatan_id',
+        'posisi_id',
         'gender',
         'address',
         'handphone',

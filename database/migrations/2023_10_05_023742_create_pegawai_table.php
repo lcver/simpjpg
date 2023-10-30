@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('pegawai', function (Blueprint $table) {
             $table->id();
-            $table->string('pegawai', 100)->required();
-            $table->string('gender', 10)->required();
-            $table->string('address', 100)->required();
-            $table->string('handphone', 10)->required();
+            $table->string('pegawai')->required();
+            $table->string('gender')->required();
+            $table->string('address')->required();
+            $table->string('handphone')->required();
             $table->timestamps();
         });
     }

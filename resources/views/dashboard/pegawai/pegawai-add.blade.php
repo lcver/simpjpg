@@ -208,6 +208,15 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="posisi_id">Posisi Pegawai</label>
+                                <select type="posisi_id" class="form-control" name="posisi_id" id="posisi_id" required>
+                                    <option value=""> Pilih Posisi</option>
+                                    @foreach ($posisi as $item)
+                                        <option value="{{ $item->id }}">{{ $item->posisi }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="gender">Jenis Kelamin Pegawai</label>
                                 <select type="gender" class="form-control" name="gender" id="gender" required>
                                     <option value=""> Pilih Jenis Kelamin Pegawai</option>
