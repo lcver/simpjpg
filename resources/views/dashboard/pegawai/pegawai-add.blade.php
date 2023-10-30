@@ -226,7 +226,7 @@
 
                         </div>
                         <div class="box-footer">
-                            <a href="pegawai" class="btn btn-default">Cancel</a>
+                            <a href="{{ route('pegawai') }}" class="btn btn-default">Cancel</a>
                             <button type="submit" class="btn btn-success pull-right">Simpan</button>
                         </div>
                     </form>

@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jabatan', function (Blueprint $table) {
-            $table->id();
-            $table->string('jabatan', 100)->required();
-            $table->timestamps();
+        Schema::table('kriteria', function (Blueprint $table) {
+            $table->string('posisi_id', 10)->required()->before('kriteria');
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jabatan');
+        Schema::table('kriteria', function (Blueprint $table) {
+            $table->dropColumn('posisi_id');
+        });
     }
 };

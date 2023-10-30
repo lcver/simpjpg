@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pegawai', function (Blueprint $table) {
+        Schema::create('penyedia', function (Blueprint $table) {
             $table->id();
-            $table->string('pegawai', 100)->required();
-            $table->string('gender', 10)->required();
-            $table->string('address', 100)->required();
-            $table->string('handphone', 10)->required();
+            $table->string('penyedia')->require();
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pegawai');
+        Schema::dropIfExists('penyedia');
     }
 };

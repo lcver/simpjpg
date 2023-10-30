@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jabatan', function (Blueprint $table) {
-            $table->id();
-            $table->string('jabatan', 100)->required();
-            $table->timestamps();
+        Schema::table('pegawai', function (Blueprint $table) {
+            $table->string('jabatan_id', 10)->required()->before('gender');
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jabatan');
+        Schema::table('pegawai', function (Blueprint $table) {
+            $table->dropColumn('jabatan_id');
+        });
     }
 };
