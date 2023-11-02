@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>E-Building | Tambah Data Area Kerja</title>
+    <title>E-Building | Penilaian</title>
 
     <link rel="icon" type="image/png"
         href="https://trello.com/1/cards/64ed4989bbe6747599ce1a05/attachments/650921639318e47f2e317368/previews/650921639318e47f2e317376/download/icon-kemenkes.png">
@@ -77,7 +77,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="change-passw" class="btn btn-default btn-flat">Change Password</a>
+                                <a href="change-password" class="btn btn-default btn-flat">Change Password</a>
                             </div>
                             <div class="pull-right">
                                 <a href="logout" class="btn btn-default btn-flat">LogOut</a>
@@ -111,7 +111,7 @@
                         <a href="{{ route('dashboard') }}">
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                         </a>
-                    <li>
+                    <li class="active">
                         <a href="{{ route('penilaian') }}">
                             <i class="fa fa-table"></i>
                             <span>Penilaian</span>
@@ -124,7 +124,7 @@
                     </li>
                     <li class="header">AREA KERJA</li>
                     <li>
-                    <li class="active">
+                    <li>
                         <a href="{{ route('areakerja') }}">
                             <i class="fa fa-briefcase"></i>
                             <span> Daftar Area Kerja</span>
@@ -139,25 +139,25 @@
                     </li>
                     <li class="header">PEGAWAI</li>
                     <li>
-                        <a href="#">
+                        <a href="{{ route('unitutama')}}">
                             <i class="fa fa-user"></i> 
                             <span>Daftar Unit Utama</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{ route('unitkerja')}}">
                             <i class="fa fa-user"></i> 
                             <span>Daftar Unit Kerja</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{route('pegawai')}}">
                             <i class="fa fa-user"></i> 
                             <span>Daftar Pegawai</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{route('pengguna')}}">
                             <i class="fa fa-user"></i> 
                             <span>Daftar Pengguna</span>
                         </a>
@@ -183,53 +183,111 @@
                 </h1>
                 <ol class="breadcrumb">
                     <li class="active">
-                        <h4>Tambah Data Area Kerja</h4>
+                        <h4>Penilaian</h4>
                     </li>
                 </ol>
-                <div class="box box-info">
-                    <div class="box-header">
-                        <h3 class="box-title">Tambah Data Form Area Kerja</h3>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="nav-tabs-custom">
+                            <div class="box box-info">
+                                <div class="box-header">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#tab_1" data-toggle="tab">Temuan Kartu Kuning</a></li>
+                                        <li><a href="#tab_2" data-toggle="tab"> Riwayat Kartu Kuning</a></li>
+                                    </ul>
+                                </div>
+                                <div class="box-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="tab_1">
+                                            <form action="{{ route('penilaian.store') }}" method="post">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <label>Posisi Bagian*</label>
+                                                    <select class="form-control select2" name="posisi_id" id="posisi_id">
+                                                        <option value="_blank_">Pilih Posisi</option>
+                                                        @foreach ($posisi as $posisiItem)
+                                                            <option value="{{ $posisiItem->id }}">{{$posisiItem->posisi}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="hidden" id="kartukuning">
+                                                    <div class="form-group">
+                                                        <label>Pegawai*</label>
+                                                        <select class="form-control select2" name="pegawai_id" id="pegawai">
+                                                            <option value="">pilih pegawai</option>
+                                                        </select>
+                                                    </div>
+    
+                                                    <div class="form-group">
+                                                        <label>Area Kerja*</label>
+                                                        <select class="form-control select2" name="area_id" id="areakerja">
+                                                            <option value="">pilih area</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group hidden" id="kriteria_wrapper">
+                                                        <label>Kriteria Kerja*</label>
+                                                        <div id="kriteria"></div>
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-info">Submit</button>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane" id="tab_2">
+                                            <table id="example1" class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Nama</th>
+                                                        <th>Posisi</th>
+                                                        <th>Nomor Hp</th>
+                                                        <th>Alamat</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($penilaianList as $data)
+                                                        <tr>
+                                                            <td>{{ ($penilaianList->currentPage() - 1) * $penilaianList->perPage() + $loop->iteration }}</td>
+                                                            <td>{{ $data->pegawai ? $data->pegawai->pegawai : '-' }}</td>
+                                                            <td>{{ $data->posisi ? $data->posisi->posisi : '-' }}</td>
+                                                            <td>{{ $data->pegawai ? $data->pegawai->handphone : '-' }}</td>
+                                                            <td>{{ $data->pegawai ? $data->pegawai->address : '-' }}</td>
+                                                            <td>
+                                                                <a href="{{ route('penilaian.detail', ['id' => $data->id]) }}"class="btn btn-primary">DETAIL</a>
+                                                                <a href="{{ route('penilaian.destroy', ['id' => $data->id]) }}" onclick="return confirm('Ingin menghapus penilaian <?= $data->pegawai->pegawai ?>?')" class="btn btn-danger">DELETE</a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <form action="{{ route('areakerja.update', ['id' => $gedung->id]) }}" method="post">
-                        @csrf
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label for="gedung">Area Kerja</label>
-                                <input type="text" class="form-control" name="gedung" id="gedung" placeholder="Masukkan Area Kerja" value="{{ $gedung->gedung }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="posisi">Area Kategori</label>
-                                <select class="form-control" name="posisi_id" id="posisi" required>
-                                    <option value=""> Pilih Posisi Area</option>
-                                    @foreach ($posisi as $item)
-                                        <option {{$item->id == $gedung->posisi_id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->posisi }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="box-footer">
-                            <a href="{{ route('areakerja') }}" class="btn btn-default">Cancel</a>
-                            <button type="submit" class="btn btn-success pull-right">Simpan</button>
-                        </div>
-                    </form>
                 </div>
-
-                <!-- Main content -->
-                @yield('content')
-                <!-- /.content -->
+            </section>
         </div>
 
-        <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <div class="pull-right hidden-xs">
-                <b>Version</b> 1.0.0
-            </div>
-            <strong>Copyright &copy; 2023.</strong> All rights reserved | Biro Umum Kemenkes
-        </footer>
-        <!-- Add the sidebar's background. This div must be placed
+
+        <!-- Main content -->
+        @yield('content')
+        <!-- /.content -->
+    </div>
+
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 1.0.0
+        </div>
+        <strong>Copyright &copy; 2023.</strong> All rights reserved | Biro Umum Kemenkes
+    </footer>
+    <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
-        <div class="control-sidebar-bg"></div>
+    <div class="control-sidebar-bg"></div>
     </div>
     <!-- ./wrapper -->
 
@@ -241,6 +299,7 @@
     <script>
         $.widget.bridge('uibutton', $.ui.button);
     </script>
+    <script src="{{ asset('js/main.js') }}"></script>
     <!-- Bootstrap 3.3.7 -->
     <script src="{{ asset('dist/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <!-- Morris.js charts -->

@@ -57,6 +57,9 @@ Route::controller(DashboardController::class)->middleware('auth')->group(functio
 
 Route::controller(PenilaianController::class)->middleware('auth')->group(function() {
     Route::get('penilaian', 'index')->name('penilaian');
+    Route::get('penilaian/detail/{id}', 'detail')->name('penilaian.detail');
+    Route::get('penilaian/destroy/{id}', 'destroy')->name('penilaian.destroy');
+    Route::post('penilaian/store', 'store')->name('penilaian.store');
 });
 
 Route::controller(KriteriaPenilaianController::class)->middleware('auth')->group(function() {

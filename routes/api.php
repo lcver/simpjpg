@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AreaKerjaController;
 use App\Http\Controllers\KriteriaPenilaianController;
 use App\Http\Controllers\PegawaiController;
 use Illuminate\Http\Request;
@@ -21,5 +22,10 @@ Route::controller(PegawaiController::class)->group(function() {
 });
 
 Route::controller(KriteriaPenilaianController::class)->group(function() {
+    Route::get('kriteria/area/{id}', 'getKriteriaByAreaId');
     Route::get('kriteria/posisi/{id}', 'getKriteriaByPosisiId');
+});
+
+Route::controller(AreaKerjaController::class)->group(function() {
+    Route::get('area-kerja/posisi/{id}', 'getAreaKerjaByPosisiId');
 });

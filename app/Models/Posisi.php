@@ -10,7 +10,7 @@ class Posisi extends Model
     use HasFactory;
     protected $table = 'posisi';
 
-    protected $primaryKey = 'posisi_id';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'posisi',
     ];
@@ -18,5 +18,15 @@ class Posisi extends Model
     public function users()
     {
         return $this->hasOne(User::class);
+    }
+
+    public function gedung()
+    {
+        return $this->hasOne(Gedung::class);
+    }
+
+    public function penilaian()
+    {
+        return $this->hasOne(Penilaian::class);
     }
 }

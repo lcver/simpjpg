@@ -180,6 +180,9 @@
                     E-BUILDING
                     <br>
                     <h4>Sistem Informasi Manajemen Penilaian Jasa Pengelola Gedung</h4>
+                    <div class="margin-bottom">
+                        <a href="{{ route('penilaian') }}" class="text-xl" ><i class="fa fa-arrow-left"></i> Kembali</a>
+                    </div>
                 </h1>
                 <ol class="breadcrumb">
                     <li class="active">
@@ -187,54 +190,47 @@
                     </li>
                 </ol>
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <form action="">
-                            @csrf
-                            <div class="nav-tabs-custom">
-                                <div class="box box-info">
-                                    <div class="box-header">
-                                        <ul class="nav nav-tabs">
-                                            <li class="active"><a href="tab_1" data-toggle="tab">Temuan Kartu Kuning</a></li>
-                                            <li><a href="#tab_2" data-toggle="tab"> Riwayat Kartu Kuning</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="box-body">
-                                        <div class="tab-content">
-                                            <div class="tab-pane active" id="tab_1">
-                                                <div class="form-group">
-                                                    <label>Posisi Bagian*</label>
-                                                    <select class="form-control select2" name="posisi_id" id="posisi_id">
-                                                        <option value="_blank_">Pilih Posisi</option>
-                                                        @foreach ($posisi as $posisiItem)
-                                                            <option value="{{ $posisiItem->id }}">{{$posisiItem->posisi}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="hidden" id="kartukuning">
-                                                    <div class="form-group">
-                                                        <label>Pegawai*</label>
-                                                        <select class="form-control select2" name="pegawai" id="pegawai"></select>
-                                                    </div>
-    
-                                                    <div class="form-group">
-                                                        <label>Area Kerja*</label>
-                                                        <select class="form-control select2" name="areakerja" id="areakerja"></select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="box-footer">
-                                        <button type="submit" class="btn btn-info">Submit</button>
-                                    </div>
-                                </div>
-                        </form>
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">Detail riwayat kartu kuning</h3>
+                    </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="col-md-7">
+                        <div class="box">
+                            <h4>Informasi pegawai</h4>
+                            <table>
+                                <tr>
+                                    <td style="padding: 0 5px 0 0">Nama</td>
+                                    <td style="padding: 0 5px 0 0">:</td>
+                                    <td style="padding: 0 5px 0 0">{{ $penilaian->pegawai->pegawai }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0 5px 0 0">Alamat</td>
+                                    <td style="padding: 0 5px 0 0">:</td>
+                                    <td style="padding: 0 5px 0 0">{{ $penilaian->pegawai->address }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0 5px 0 0">No.HP</td>
+                                    <td style="padding: 0 5px 0 0">:</td>
+                                    <td style="padding: 0 5px 0 0">{{ $penilaian->pegawai->handphone }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="box">
+                            <h4>Informasi kartu kuning</h4>
+                            @foreach (json_decode($penilaian->kartu_kuning) as $kartukuning)
+                            <div>        
+                                <p><span>{{ $loop->iteration }}.</span> {{ $kriteria[$kartukuning]->kriteria }}</p>
+                            </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-
+            </section>
         </div>
-        </section>
 
 
         <!-- Main content -->

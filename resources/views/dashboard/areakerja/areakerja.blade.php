@@ -223,7 +223,7 @@
                                 <tr>
                                   <td>{{ ($gedungList->currentPage() - 1) * $gedungList->perPage() + $loop->iteration }}</td>
                                   <td>{{$data->gedung}}</td>
-                                  <td>{{$data->area->area}}</td>
+                                  <td>{{$data->posisi ? $data->posisi->posisi : "-"}}</td>
                                   <td>
                                     <a href="{{ route('areakerja.edit', ['id' => $data->id]) }}"class="btn btn-warning">EDIT</a>
                                     <a href="{{ route('areakerja.destroy', ['id' => $data->id]) }}" onclick="return confirm('Ingin menghapus <?= $data->gedung ?>?')" class="btn btn-danger">DELETE</a>

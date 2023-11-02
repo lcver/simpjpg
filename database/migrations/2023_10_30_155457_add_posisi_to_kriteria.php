@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('kriteria', function (Blueprint $table) {
-            $table->string('posisi_id', 10)->required()->after('kriteria');
+            $table->string('posisi_id', 10)->nullable()->after('kriteria');
         });
     }
 

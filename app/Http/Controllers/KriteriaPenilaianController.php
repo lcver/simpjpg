@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Alert;
 use App\Helpers\Validation;
+use App\Models\Gedung;
 use App\Models\Kriteria;
 use App\Models\Posisi;
 use Illuminate\Http\Request;
@@ -96,6 +97,14 @@ class KriteriaPenilaianController extends Controller
     public function getKriteriaByPosisiId($id)
     {
         $datas = Kriteria::where("posisi_id", $id)->get();
+
+        return json_encode($datas);
+    }
+
+    public function getKriteriaByAreaId($id)
+    {
+        $area = Gedung::find($id);
+        $datas = Kriteria::where("posisi_id", $area->posisi_id)->get();
 
         return json_encode($datas);
     }

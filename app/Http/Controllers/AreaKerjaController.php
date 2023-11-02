@@ -6,6 +6,7 @@ use Alert;
 use App\Helpers\Validation;
 use App\Models\Area;
 use App\Models\Gedung;
+use App\Models\Posisi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -25,14 +26,16 @@ class AreaKerjaController extends Controller
     public function create()
     {
         $area = Area::select('id', 'area')->get();
-        return view('dashboard.areakerja.areakerja-create', ['area'=>$area]);  
+        $posisi = Posisi::select('id','posisi')->get();
+        return view('dashboard.areakerja.areakerja-create', ['area' => $area, 'posisi' => $posisi]);
     }
 
     public function edit($id)
     {
         $area = Area::select('id', 'area')->get();
+        $posisi = Posisi::select('id','posisi')->get();
         $gedung = Gedung::find($id);
-        return view('dashboard.areakerja.areakerja-edit', ['gedung' => $gedung, 'area' => $area]);
+        return view('dashboard.areakerja.areakerja-edit', ['gedung' => $gedung, 'area' => $area, 'posisi' => $posisi]);
     }
 
     public function store(Request $request)
@@ -41,7 +44,7 @@ class AreaKerjaController extends Controller
             // Filter
             $filter = Validation::set($request, [
                 'gedung' => 'required|string',
-                'area_id' => 'required'
+                'posisi_id' => 'required'
             ], [
                 'gedung.required' => 'Kolom gedung tidak boleh kosong!'
             ]);
@@ -65,7 +68,7 @@ class AreaKerjaController extends Controller
             // Filter
             $filter = Validation::set($request, [
                 'gedung' => 'required|string',
-                'area_id' => 'required'
+                'posisi_id' => 'required'
             ], [
                 'gedung.required' => 'Kolom gedung tidak boleh kosong!'
             ]);
@@ -95,5 +98,12 @@ class AreaKerjaController extends Controller
             Alert::error('error', $ex->getMessage());
             return redirect()->route('areakerja');
         }
+    }
+
+    public function getAreaKerjaByPosisiId($id)
+    {
+        $datas = Gedung::where("posisi_id", $id)->get();
+
+        return json_encode($datas);
     }
 }

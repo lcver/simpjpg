@@ -196,15 +196,14 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="gedung">Area Kerja</label>
-                                <input type="gedung" class="form-control" name="gedung" id="gedung"
-                                    placeholder="Masukkan Area Kerja">
+                                <input type="text" class="form-control" name="gedung" id="gedung" placeholder="Masukkan Area Kerja">
                             </div>
                             <div class="form-group">
-                                <label for="area">Area Kategori</label>
-                                <select type="area" class="form-control" name="area_id" id="Area" required>
-                                    <option value=""> Pilih Area Kategori Pegawai</option>
-                                    @foreach ($area as $item)
-                                        <option value="{{ $item->id }}">{{ $item->area }}</option>
+                                <label for="posisi">Posisi Area</label>
+                                <select class="form-control" name="posisi_id" id="posisi" required>
+                                    <option value=""> Pilih Posisi Area</option>
+                                    @foreach ($posisi as $item)
+                                        <option value="{{ $item->id }}">{{ $item->posisi }}</option>
                                     @endforeach
                                 </select>
                             </div>

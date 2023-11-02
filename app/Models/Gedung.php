@@ -14,9 +14,14 @@ class Gedung extends Model
 
     protected $fillable = [
         'area_id',
+        'posisi_id',
         'gedung',
     ];
     public function area() {
         return $this->belongsTo(Area::class, 'area_id', 'id');
+    }
+
+    public function posisi() {
+        return $this->belongsTo(Posisi::class, 'posisi_id', 'id');
     }
 }
